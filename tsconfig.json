@@ -2,9 +2,10 @@
 	"compilerOptions": {
 		"module": "ESNext",
 		"target": "ESNext",
-		"moduleResolution": "Node",
+		"moduleResolution": "NodeNext",
 		"strict": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"noEmit": true
 	},
 	"include": ["src"],
 	"exclude": ["node_modules"]

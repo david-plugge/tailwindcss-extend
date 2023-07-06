@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite';
 import { Minimatch } from 'minimatch';
-import { ModuleType, bundle } from './bundle';
+import { ModuleType, bundle } from './bundle.js';
 
 interface TailwindExtendConfig {
 	pattern: string;
@@ -11,7 +11,7 @@ interface TailwindExtendConfig {
 export default function vitePluginTailwindcssExtend({
 	pattern,
 	output = 'tailwindcss-extend.cjs',
-	type = 'commonjs',
+	type = 'commonjs'
 }: TailwindExtendConfig): Plugin {
 	const mm = new Minimatch(pattern);
 
@@ -26,6 +26,6 @@ export default function vitePluginTailwindcssExtend({
 		},
 		async buildStart() {
 			await bundle(pattern, type, output);
-		},
+		}
 	};
 }

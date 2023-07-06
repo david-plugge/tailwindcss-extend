@@ -52,9 +52,9 @@ export default defineConfig({
 
 			// optional params with defaults
 			output: 'tailwindcss-extend.cjs',
-			type: 'commonjs',
-		}),
-	],
+			type: 'commonjs'
+		})
+	]
 });
 ```
 

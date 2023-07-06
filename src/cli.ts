@@ -1,6 +1,6 @@
 import sade from 'sade';
 import chokidar from 'chokidar';
-import { bundle } from './bundle';
+import { bundle } from './bundle.js';
 
 sade(PKG_NAME, true)
 	.version(PKG_VERSION)

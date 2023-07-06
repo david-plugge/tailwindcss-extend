@@ -2,7 +2,7 @@
 module.exports = {
 	content: [],
 	theme: {
-		extend: {},
+		extend: {}
 	},
-	plugins: [require('./tailwindcss-extend.cjs')],
+	plugins: [require('./tailwindcss-extend.cjs')]
 };
