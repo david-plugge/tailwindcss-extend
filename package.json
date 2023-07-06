@@ -1,0 +1,53 @@
+{
+	"name": "tailwindcss-extend",
+	"version": "0.0.1",
+	"description": "",
+	"keywords": [
+		"vite",
+		"tailwindcss",
+		"postcss"
+	],
+	"author": "David Plugge",
+	"license": "ISC",
+	"type": "module",
+	"exports": {
+		"vite": {
+			"default": "./dist/vite.js",
+			"types": "./dist/vite.d.ts"
+		}
+	},
+	"bin": {
+		"tailwindcss-extend": "./dist/cli.js"
+	},
+	"scripts": {
+		"dev": "tsup --watch",
+		"build": "tsup",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@types/node": "^18.0.0",
+		"@types/postcss-js": "^4.0.1",
+		"postcss": "^8.4.21",
+		"prettier": "^3.0.0",
+		"tsup": "^7.1.0",
+		"typescript": "^5.1.6",
+		"vite": "^4.0.0"
+	},
+	"peerDependencies": {
+		"postcss": "^8.4.21",
+		"vite": "^4.0.0",
+		"tailwindcss": "^3.0.0"
+	},
+	"peerDependenciesMeta": {
+		"vite": {
+			"optional": true
+		}
+	},
+	"dependencies": {
+		"chokidar": "^3.5.3",
+		"glob": "^10.3.1",
+		"minimatch": "^9.0.2",
+		"postcss-js": "^4.0.1",
+		"sade": "^1.8.1"
+	}
+}
