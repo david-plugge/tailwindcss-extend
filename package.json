@@ -18,9 +18,16 @@
 	],
 	"type": "module",
 	"exports": {
-		"vite": {
+		"./vite": {
 			"default": "./dist/vite.js",
 			"types": "./dist/vite.d.ts"
+		}
+	},
+	"typesVersions": {
+		">4.0": {
+			"vite": [
+				"./dist/vite.d.ts"
+			]
 		}
 	},
 	"bin": {
