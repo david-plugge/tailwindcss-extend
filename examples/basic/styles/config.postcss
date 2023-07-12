@@ -1,0 +1,26 @@
+@layer base {
+	:root {
+		--bg: 255 255 255;
+		--fg: 51 51 51;
+	}
+
+	@media (prefers-color-schema: dark) {
+		:root {
+			--bg: 51 51 51;
+			--fg: 255 255 255;
+		}
+	}
+}
+
+:config {
+	theme {
+		extend {
+			textColor {
+				main: rgb(var(--fg) / __alpha_value__);
+			}
+			backgroundColor {
+				main: rgb(var(--bg) / __alpha_value__);
+			}
+		}
+	}
+}

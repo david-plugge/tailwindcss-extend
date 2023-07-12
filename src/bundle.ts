@@ -17,6 +17,7 @@ export async function bundle(
 	output: string
 ) {
 	const layers: string[] = [];
+	let config: any = {};
 
 	const g = new Glob(pattern, {
 		nodir: true,
@@ -24,7 +25,9 @@ export async function bundle(
 	});
 
 	for await (const file of g) {
-		const css = await readFile(file, 'utf8');
+		let css = await readFile(file, 'utf8');
+
+		css = css.replaceAll('__alpha_value__', '<alpha-value>');
 
 		const root = parse(css, { from: file });
 		const jss = objectify(root);
@@ -37,15 +40,52 @@ export async function bundle(
 				);
 			}
 		}
+
+		if (':config' in jss) {
+			config = deepmerge(config, jss[':config']);
+		}
 	}
 
+	const handlerStr = [
+		'const handler = (api) => {',
+		`\t${layers.join('\n\t\t')}`,
+		'};'
+	].join('\n');
+
+	const configStr = `const config = ${JSON.stringify(config)};`;
+
 	const content = [
-		`${
-			type === 'commonjs' ? 'module.exports =' : 'export default'
-		} (api) => {`,
-		`\t${layers.join('\n\t')}`,
+		handlerStr,
+		'',
+		configStr,
+		'',
+		`${type === 'commonjs' ? 'module.exports =' : 'export default'} {`,
+		'\thandler,',
+		'\tconfig,',
 		'};'
 	].join('\n');
 
 	await writeFile(output, content, 'utf-8');
+}
+
+function isObject(o: unknown) {
+	return typeof o === 'object' && !Array.isArray(o);
+}
+
+function deepmerge(target: any, ...sources: any[]) {
+	if (!sources.length) return target;
+	const source = sources.shift();
+
+	if (isObject(target) && isObject(source)) {
+		for (const key in source) {
+			if (isObject(source[key])) {
+				if (!target[key]) Object.assign(target, { [key]: {} });
+				deepmerge(target[key], source[key]);
+			} else {
+				Object.assign(target, { [key]: source[key] });
+			}
+		}
+	}
+
+	return deepmerge(target, ...sources);
 }

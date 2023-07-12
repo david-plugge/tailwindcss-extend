@@ -36,7 +36,15 @@ Options
     -h, --help       Displays this message
 ```
 
+**Example**
+
+```bash
+tailwindcss-extend -p 'styles/**' --watch
+```
+
 ### Vite
+
+If you are using vite as a bundler you can directly use the plugin instead of the cli:
 
 ```ts
 // vite.config.ts
@@ -60,6 +68,8 @@ export default defineConfig({
 
 ### TailwindCSS config
 
+Add the compiled plugin to your tailwind config:
+
 ```js
 // tailwind.config.cjs
 
@@ -75,6 +85,86 @@ const config = {
 };
 
 module.exports = config;
+```
+
+## Config
+
+Editing the theme inside the tailwind config doesn´t feel very natural due to the use of css in js. With tailwindcss-extend you can set your config directly inside (post-)css!
+
+This:
+
+```css
+:config {
+	theme {
+		extend {
+			colors {
+				brand: #fa3;
+			}
+		}
+	}
+}
+```
+
+compiles to:
+
+```ts
+const config = {
+	theme: {
+		extend: {
+			colors: {
+				brand: '#fa3'
+			}
+		}
+	}
+};
+```
+
+You can even use css variables to dynamicly set your theme!
+
+```css
+@layer base {
+	:root {
+		--bg: 255 255 255;
+		--fg: 51 51 51;
+	}
+
+	@media (prefers-color-schema: dark) {
+		:root {
+			--bg: 51 51 51;
+			--fg: 255 255 255;
+		}
+	}
+}
+
+:config {
+	theme {
+		extend {
+			textColor {
+				main: rgb(var(--fg) / __alpha_value__);
+			}
+			backgroundColor {
+				main: rgb(var(--bg) / __alpha_value__);
+			}
+		}
+	}
+}
+```
+
+compiles to:
+
+```ts
+const config = {
+	theme: {
+		extend: {
+			textColor: {
+				main: 'rgb(var(--fg) / <alpha-value>)'
+			},
+			backgroundColor: {
+				main: 'rgb(var(--bg) / <alpha-value>)'
+			}
+		}
+	}
+};
 ```
 
 ## License

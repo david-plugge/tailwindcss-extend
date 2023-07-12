@@ -5,10 +5,10 @@
 	"scripts": {
 		"dev": "run-p dev:*",
 		"dev:next": "next dev",
-		"dev:twe": "tailwindcss-extend -p styles/*.css -w",
+		"dev:twe": "tailwindcss-extend -p 'styles/**' -w",
 		"build": "run-s build:twe build:next",
 		"build:next": "next build",
-		"build:twe": "tailwindcss-extend -p styles/*.css",
+		"build:twe": "tailwindcss-extend -p 'styles/**'",
 		"start": "next start",
 		"lint": "next lint"
 	},

@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev": "run-p dev:*",
 		"dev:tailwind": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-		"dev:tailwind-extend": "tailwindcss-extend -p styles/** --watch"
+		"dev:tailwind-extend": "tailwindcss-extend -p 'styles/**' --watch"
 	},
 	"keywords": [],
 	"author": "",
