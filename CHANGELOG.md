@@ -1,5 +1,11 @@
 # tailwindcss-extend
 
+## 0.0.3
+
+### Patch Changes
+
+-   0504818: support css variable syntax
+
 ## 0.0.2
 
 ### Patch Changes
