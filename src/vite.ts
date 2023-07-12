@@ -15,17 +15,22 @@ export default function vitePluginTailwindcssExtend({
 }: TailwindExtendConfig): Plugin {
 	const mm = new Minimatch(pattern);
 
+	const runBundle = () =>
+		bundle(pattern, type, output).catch((err) => {
+			console.error(err);
+		});
+
 	return {
 		name: 'vite-plugin-tailwindcss-extend',
 		configureServer(vite) {
 			vite.watcher.on('all', (event, path) => {
 				if (mm.match(path)) {
-					bundle(pattern, type, output);
+					runBundle();
 				}
 			});
 		},
 		async buildStart() {
-			await bundle(pattern, type, output);
+			await runBundle();
 		}
 	};
 }

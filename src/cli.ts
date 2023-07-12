@@ -19,16 +19,21 @@ sade(PKG_NAME, true)
 			error('No output provided.');
 		}
 
+		const runBundle = () =>
+			bundle(pattern, type, output).catch((err) => {
+				console.error(err);
+			});
+
 		if (watch) {
 			const watcher = chokidar.watch(pattern);
 
 			watcher.on('all', () => {
-				bundle(pattern, type, output);
+				runBundle();
 			});
 
-			await bundle(pattern, type, output);
+			await runBundle();
 		} else {
-			await bundle(pattern, type, output);
+			await runBundle();
 		}
 	})
 	.parse(process.argv);
