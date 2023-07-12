@@ -52,7 +52,10 @@ export async function bundle(
 		'};'
 	].join('\n');
 
-	const configStr = `const config = ${JSON.stringify(config)};`;
+	const configStr = `const config = ${JSON.stringify(
+		config,
+		removeDoubleDashesFromKeys
+	)};`;
 
 	const content = [
 		handlerStr,
@@ -88,4 +91,25 @@ function deepmerge(target: any, ...sources: any[]) {
 	}
 
 	return deepmerge(target, ...sources);
+}
+
+function removeDoubleDashesFromKeys(key: string, value: any) {
+	if (isObject(value)) {
+		let replacement: any = {};
+		let hasDashes = false;
+
+		for (const key in value) {
+			if (key.startsWith('--')) {
+				hasDashes = true;
+				replacement[key.substring(2)] = value[key];
+			} else {
+				replacement[key] = value[key];
+			}
+		}
+		if (hasDashes) {
+			return replacement;
+		}
+	}
+
+	return value;
 }

@@ -98,7 +98,7 @@ This:
 	theme {
 		extend {
 			colors {
-				brand: #fa3;
+				--brand: #fa3;
 			}
 		}
 	}
@@ -140,10 +140,10 @@ You can even use css variables to dynamicly set your theme!
 	theme {
 		extend {
 			textColor {
-				main: rgb(var(--fg) / __alpha_value__);
+				--main: rgb(var(--fg) / __alpha_value__);
 			}
 			backgroundColor {
-				main: rgb(var(--bg) / __alpha_value__);
+				--main: rgb(var(--bg) / __alpha_value__);
 			}
 		}
 	}
