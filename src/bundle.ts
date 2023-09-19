@@ -27,7 +27,7 @@ export async function bundle(
 	for await (const file of g) {
 		let css = await readFile(file, 'utf8');
 
-		css = css.replaceAll('__alpha_value__', '<alpha-value>');
+		css = css.replace(/__alpha_value__/g, '<alpha-value>');
 
 		const root = parse(css, { from: file });
 		const jss = objectify(root);
