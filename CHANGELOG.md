@@ -1,5 +1,11 @@
 # tailwindcss-extend
 
+## 0.0.4
+
+### Patch Changes
+
+-   97d2510: css.replaceAll is not a function
+
 ## 0.0.3
 
 ### Patch Changes
