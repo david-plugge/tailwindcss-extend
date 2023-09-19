@@ -1,6 +1,6 @@
 {
 	"name": "tailwindcss-extend",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Compile your tailwindcss components into tailwind plugins and enjoy full autocompletion!",
 	"author": "David Plugge",
 	"repository": {
