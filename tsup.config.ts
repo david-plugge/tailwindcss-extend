@@ -3,7 +3,7 @@ import { name, version } from './package.json';
 
 export default defineConfig([
 	{
-		entry: ['src/vite.ts', 'src/cli.ts'],
+		entry: ['src/vite.ts'],
 		format: ['esm'],
 		dts: true,
 		clean: true
