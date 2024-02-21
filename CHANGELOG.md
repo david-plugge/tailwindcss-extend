@@ -1,5 +1,11 @@
 # tailwindcss-extend
 
+## 0.0.5
+
+### Patch Changes
+
+-   c88381b: add shebang to cli
+
 ## 0.0.4
 
 ### Patch Changes
